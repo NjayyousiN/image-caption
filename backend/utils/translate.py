@@ -3,7 +3,7 @@ import random
 from datasets import load_dataset, Dataset
 
 # Load and split dataset
-file_path = '/content/ara_eng.txt'  # Adjust for Colab's file system
+file_path = 'backend/data/ara_eng.txt'  # Adjust for Colab's file system
 with open(file_path, 'r', encoding='utf-8') as file:
     lines = file.readlines()
 
@@ -18,10 +18,10 @@ train_lines = lines[:split_index]
 val_lines = lines[split_index:]
 
 # Save the training and validation files
-with open('/content/train_ara_eng.txt', 'w', encoding='utf-8') as train_file:
+with open('backend/data/train_ara_eng.txt', 'w', encoding='utf-8') as train_file:
     train_file.writelines(train_lines)
 
-with open('/content/val_ara_eng.txt', 'w', encoding='utf-8') as val_file:
+with open('backend/data/val_ara_eng.txt', 'w', encoding='utf-8') as val_file:
     val_file.writelines(val_lines)
 
 print(f"Training set: {len(train_lines)} lines")
@@ -29,8 +29,8 @@ print(f"Validation set: {len(val_lines)} lines")
 
 # Load dataset into Hugging Face Dataset format
 dataset = load_dataset('text', data_files={
-    'train': '/content/train_ara_eng.txt',
-    'validation': '/content/val_ara_eng.txt'
+    'train': 'backend/data/train_ara_eng.txt',
+    'validation': 'backend/data/val_ara_eng.txt'
 })
 
 # Map data into dictionary format
